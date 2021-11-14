@@ -8,6 +8,10 @@ service OrchestratorService {
     rpc GetUserByName(UserName) returns (User) {}
 }
 
+service MockDataService {
+    rpc GetMockUserData(UserName) returns (User) {}
+}
+
 message UserName {
     string name = 1;
 }
