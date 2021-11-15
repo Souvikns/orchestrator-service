@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net"
-
+	"github.com/Souvikns/orchestrator-service/constants"
 	pb "github.com/Souvikns/orchestrator-service/user"
 	"google.golang.org/grpc"
 )
@@ -24,14 +24,14 @@ func (server *server) GetMockUserData(ctx context.Context, request *pb.UserName)
 }
 
 func main() {
-	listner, err := net.Listen("tcp", ":10000")
+	listner, err := net.Listen("tcp", constants.DUMMY_DATA_PORT)
 	if err != nil {
-		log.Fatalf("Can not bind server to port 10000")
+		log.Fatalf("Can not bind server to port " + constants.DUMMY_DATA_PORT)
 	}
 
 	grpcServer := grpc.NewServer()
 	pb.RegisterMockDataServiceServer(grpcServer, &server{})
-	log.Printf("Server started on port 10000")
+	log.Printf("Server started on port " + constants.DUMMY_DATA_PORT)
 	err = grpcServer.Serve(listner)
 	if err != nil {
 		log.Fatalf("Error occured in serving grpc server %v", err)
