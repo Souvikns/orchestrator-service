@@ -12,6 +12,10 @@ service MockDataService {
     rpc GetMockUserData(UserName) returns (User) {}
 }
 
+service Orchestrator2Service {
+    rpc GetUser(UserName) returns (User) {}
+}
+
 message UserName {
     string name = 1;
 }
